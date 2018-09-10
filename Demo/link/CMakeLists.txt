@@ -2,9 +2,10 @@ cmake_minimum_required(VERSION 3.0)
 
 project(link)
 
-add_library(vectorShared SHARED addvec.c multvec.c)#dynamic link library  .dylib
-add_library(vectorModule MODULE addvec.c multvec.c)#dynamic load library  .so .bundle
-add_library(vectorStatic STATIC addvec.c multvec.c)
+set(EXECUTABLE_OUTPUT_PATH "bin")
+set(LIBRARY_OUTPUT_PATH "lib")
+
+add_subdirectory(library)
 
 add_executable(StaticLink StaticLink.c)
 target_link_libraries(StaticLink vectorStatic)

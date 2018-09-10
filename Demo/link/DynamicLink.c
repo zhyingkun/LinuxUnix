@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <unistd.h>
-#include "vector.h"
+#include "library/vector.h"
 
 int x[2] = {1, 2};
 int y[2] = {3, 4};
