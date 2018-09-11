@@ -13,3 +13,11 @@ unp: code from unp book
 ComputerLab: code for CSAPP Computer Lab, and the solving code
 
 Demo: code for test, the main code
+
+## How to build the Demos
+
+cd Demo/{Demo}
+mkdir build
+cd build
+cmake ..
+make
