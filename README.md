@@ -1,6 +1,6 @@
 # Linux and Unix sample code
 
-The repo are create for test some code
+This repo are create for test some code
 
 ## Directory Desc
 
@@ -10,7 +10,7 @@ tlpi: code from tlpi book
 
 unp: code from unp book
 
-ComputerLab: code for CSAPP Computer Lab, and the solving code
+ComputerLab: code form CSAPP Computer Lab, and the solving code
 
 Demo: code for test, the main code
 
