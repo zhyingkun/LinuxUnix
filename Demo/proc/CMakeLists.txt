@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 project(proc)
 
+add_compile_options(-std=c99)
+
 add_executable(pid pid.c)
 add_executable(mem_segments mem_segments.c)
 add_executable(necho necho.c)
