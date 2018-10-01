@@ -22,7 +22,7 @@ int main(void)
 	if (write(STDOUT_FILENO, buf, sizeof(buf) - 1) != sizeof(buf) - 1)
 		printf("write error\n");
 	printf("before fork\n"); /* we don't flush stdout */
-	printf("STDOUT_FILENO: %d  stdout: %d\n", STDOUT_FILENO, stdout->_file);
+	printf("STDOUT_FILENO: %d  stdout: %d\n", STDOUT_FILENO, fileno(stdout));
 	// fflush(stdout);
 	struct sigaction newSigAction;
 	newSigAction.__sigaction_u = (union __sigaction_u)handleSIGCHLD;

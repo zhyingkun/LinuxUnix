@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(proc)
-
+project(proc C)
+set( CMAKE_EXPORT_COMPILE_COMMANDS 1 )
 add_compile_options(-std=c99)
 
 add_executable(pid pid.c)
