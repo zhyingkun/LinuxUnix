@@ -28,17 +28,24 @@ int main(int argc, char **argv)
         return -1;
     }
     printf("sizeof zyk: %lu\n", sizeof("zyk"));
-    int writeret = write(sockfd, "zyk", 4);
-    printf("writeret: %d\n", writeret);
+    int sendret = send(sockfd, "zyk", 4, 0);
+    printf("sendret: %d\n", sendret);
+    // use write systemcall to send msg is ok
+    // int writeret = write(sockfd, "zyk", 4);
+    // printf("writeret: %d\n", writeret);
     char buf[1024];
-    int readret = 0;
-    while ((readret = read(sockfd, buf, 1024)) > 0)
-    {
-        buf[readret] = '\0';
-        printf("readret: %d\n", readret);
-        printf("read from socket: %s\n", buf);
-    }
-    printf("readret: %d errno:%d strerror:%s\n", readret, errno, strerror(errno));
+    int recvret = recv(sockfd, buf, 1024, 0);
+    printf("recvret: %d\n", recvret);
+    printf("receive from socket: %s\n", buf);
+    // use read systemcall to receive the msg is ok
+    // int readret = 0;
+    // while ((readret = read(sockfd, buf, 1024)) > 0)
+    // {
+    //     buf[readret] = '\0';
+    //     printf("readret: %d\n", readret);
+    //     printf("read from socket: %s\n", buf);
+    // }
+    // printf("readret: %d errno:%d strerror:%s\n", readret, errno, strerror(errno));
     close(sockfd);
     return 0;
 }
