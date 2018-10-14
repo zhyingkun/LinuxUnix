@@ -19,11 +19,12 @@ int main(int argc, char **argv)
     servaddr.sin_family = AF_INET;
     servaddr.sin_port = htons(8888);
     servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
-
+    printf("server ip: %s  server port: %d\n", "127.0.0.1", 8888);
     int connectret = connect(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr));
     if (connectret != 0)
     {
         printf("error: connect systemcall return -1, errno:%d strerror:%s\n", errno, strerror(errno));
+        close(sockfd);
         return -1;
     }
     printf("sizeof zyk: %lu\n", sizeof("zyk"));
