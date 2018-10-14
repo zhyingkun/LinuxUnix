@@ -40,8 +40,6 @@ int main(int argc, char const *argv[])
     printf("main pid:%d ppid:%d\n", getpid(), getppid());
     printf("sockfd:%d bindret:%d listenret:%d\n", sockfd, bindret, listenret);
     fflush(NULL);
-    char buff[1024];
-    char buffer[1024];
     for (int i = 0; i < 4; i++)
     {
         int pid = fork();
@@ -69,6 +67,7 @@ int main(int argc, char const *argv[])
                     printf("getpeerret:%d error:%d strerror:%s\n", getpeerret, errno, strerror(errno));
                 }
                 printf("pid:%d ppid:%d acceptfd:%d\n", getpid(), getppid(), acceptfd);
+                char buff[1024];
                 int readlen = recv(acceptfd, buff, sizeof(buff), 0);
                 if (readlen > 0)
                 {
@@ -79,6 +78,7 @@ int main(int argc, char const *argv[])
                 {
                     printf("readlen: %d errno:%d strerror:%s\n", readlen, errno, strerror(errno));
                 }
+                char buffer[1024];
                 snprintf(buffer, 1024, "Hello %s", buff);
                 int sendlen = send(acceptfd, buffer, strlen(buffer), 0);
                 printf("sendlen: %d\n", sendlen);
