@@ -34,6 +34,7 @@ int main(int argc, char **argv)
     int readret = 0;
     while ((readret = read(sockfd, buf, 1024)) > 0)
     {
+        buf[readret] = '\0';
         printf("readret: %d\n", readret);
         printf("read from socket: %s\n", buf);
     }
