@@ -20,6 +20,8 @@ int main(int argc, char **argv)
     servaddr.sin_port = htons(8888);
     servaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
     printf("server ip: %s  server port: %d\n", "127.0.0.1", 8888);
+    // servaddr.sin_addr.s_addr = inet_addr("192.168.31.244");
+    // printf("server ip: %s  server port: %d\n", "192.168.31.244", 8888);
     int connectret = connect(sockfd, (const struct sockaddr *)&servaddr, sizeof(servaddr));
     if (connectret != 0)
     {
@@ -34,8 +36,9 @@ int main(int argc, char **argv)
     // int writeret = write(sockfd, "zyk", 4);
     // printf("writeret: %d\n", writeret);
     char buf[1024];
-    int recvret = recv(sockfd, buf, 1024, 0);
-    printf("recvret: %d\n", recvret);
+    int recvlen = recv(sockfd, buf, 1024, 0);
+    buf[recvlen] = '\0';
+    printf("recvlen: %d\n", recvlen);
     printf("receive from socket: %s\n", buf);
     // use read systemcall to receive the msg is ok
     // int readret = 0;
