@@ -20,7 +20,9 @@ int main(int argc, char const *argv[])
     struct sockaddr_in srvaddr;
     memset(&srvaddr, 0, sizeof(srvaddr));
     srvaddr.sin_family = AF_INET;
-    srvaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    // srvaddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    // srvaddr.sin_addr.s_addr = inet_addr("192.168.31.244");
+    srvaddr.sin_addr.s_addr = inet_addr("0.0.0.0");
     srvaddr.sin_port = htons(8888);
     int bindret = bind(sockfd, (const struct sockaddr *)&srvaddr, sizeof(srvaddr));
     if (bindret != 0) // bind return 0 if success
@@ -68,15 +70,16 @@ int main(int argc, char const *argv[])
                 }
                 printf("pid:%d ppid:%d acceptfd:%d\n", getpid(), getppid(), acceptfd);
                 char buff[1024];
-                int readlen = recv(acceptfd, buff, sizeof(buff), 0);
-                if (readlen > 0)
+                int recvlen = recv(acceptfd, buff, sizeof(buff), 0);
+                if (recvlen > 0)
                 {
-                    printf("readlen: %d\n", readlen);
+                    buff[recvlen] = '\0';
+                    printf("recvlen: %d\n", recvlen);
                     printf("read from acceptfd: %s\n", buff);
                 }
                 else
                 {
-                    printf("readlen: %d errno:%d strerror:%s\n", readlen, errno, strerror(errno));
+                    printf("recvlen: %d errno:%d strerror:%s\n", recvlen, errno, strerror(errno));
                 }
                 char buffer[1024];
                 snprintf(buffer, 1024, "Hello %s", buff);
