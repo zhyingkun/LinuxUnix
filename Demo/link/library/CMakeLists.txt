@@ -16,4 +16,7 @@ add_library(vectorShared SHARED addvec.c multvec.c)#dynamic link library  .dylib
 # )
 
 add_library(vectorModule MODULE addvec.c multvec.c)#dynamic load library  .so .bundle
+if(APPLE)
+    set_target_properties(vectorModule PROPERTIES BUNDLE TRUE)
+endif(APPLE)
 add_library(vectorStatic STATIC addvec.c multvec.c)
