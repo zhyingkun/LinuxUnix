@@ -1,3 +1,5 @@
+// #undef NDEBUG // Turn on the assert function, gcc should have -g option
+// #define NDEBUG // Turn off the assert function
 #include <assert.h>
 
 int main(int argc, char const *argv[])
