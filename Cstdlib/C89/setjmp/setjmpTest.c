@@ -1,23 +1,37 @@
 #include <setjmp.h>
+int printf(const char* format, ...);
 
 static jmp_buf gJmpBuffer;
 
-void fireLongJmp(){
+void fireLongJmpOne(){
+	printf("In fireLongJmpOne\n");
 	longjmp(gJmpBuffer, 1);
+}
+void fireLongJmpTwo(){
+	printf("In fireLongJmpTwo\n");
+	longjmp(gJmpBuffer, 2);
 }
 
 int main(int argc, char* argv[]){
-	int ret = 0;
+	printf("Start...\n");
 	switch (setjmp(gJmpBuffer)){
 		case 0:
 			// first setjmp return
-			ret += 1;
-			fireLongJmp();
+			printf("The 0 case of switch\n");
+			fireLongJmpOne();
+			break;
+		case 1:
+			// the second setjmp return
+			printf("The 1 case of switch\n");
+			fireLongJmpTwo();
+			break;
+		case 2:
+			printf("The 2 case of switch\n");
 			break;
 		default:
-			// the second setjmp return
-			ret += 2;
+			printf("The default case of switch\n");
 			break;
 	}
-	return ret;
+	printf("End.\n");
+	return 0;
 }
