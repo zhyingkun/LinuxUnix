@@ -2,3 +2,12 @@
 
 build
 buildXcode
+
+a.out
+
+lex.yy.c
+a.out
+*.dSYM
+
+*.tab.h
+*.tab.c
