@@ -1,6 +1,8 @@
+#include <stdio.h>
+
 int multcnt = 0;
 
-void multvec(int *x, int *y, int *z, int n)
+extern void multvec(int *x, int *y, int *z, int n)
 {
     int i = 0;
     multcnt++;
@@ -8,4 +10,10 @@ void multvec(int *x, int *y, int *z, int n)
     {
         z[i] = x[i] + y[i];
     }
+}
+
+extern int hellotwice(int num)
+{
+    printf("Hello World!");
+    return num + num;
 }

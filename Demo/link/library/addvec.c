@@ -1,6 +1,6 @@
 int addcnt = 0;
 
-void addvec(int *x, int *y, int *z, int n)
+extern void addvec(int *x, int *y, int *z, int n)
 {
     int i = 0;
     addcnt++;
