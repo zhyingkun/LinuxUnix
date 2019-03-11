@@ -44,16 +44,20 @@ cmake -G "Visual Studio 15 2017 Win64" ..
 
 5. Cstdlib：C语言标准库，包含标准库函数的基本用法
 
-6. Demo：这是存放测试代码的主要路径
+6. CTrapsAndPitfalls：C陷阱与缺陷，测试代码
 
-7. ExpertCProgramming：C专家编程，测试代码
+7. Demo：这是存放测试代码的主要路径
 
-8. FlexBison：Flex与Bison，测试和示例代码
+8. ExpertCProgramming：C专家编程，测试代码
 
-9. SelfCultivation：程序员的自我修养，测试代码
+9. FlexBison：Flex与Bison，测试和示例代码
 
-10. tlpi：Linux系统编程手册，示例代码
+10. SelfCultivation：程序员的自我修养，测试代码
 
-11. unp：Unix网络编程，示例代码
+11. Shell：shell脚本测试代码
 
-12. 所有CMakeLists.txt：用于构建所有可执行文件
+12. tlpi：Linux系统编程手册，示例代码
+
+13. unp：Unix网络编程，示例代码
+
+14. 所有CMakeLists.txt：用于构建所有可执行文件
