@@ -4,6 +4,8 @@ project(ExpertCProgramming
 	LANGUAGES C)
 
 add_subdirectory(./linklist)
+add_subdirectory(./cdecl)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(TARGET linklist PROPERTY FOLDER "ExpertCProgramming")
+set_property(TARGET cdecl PROPERTY FOLDER "ExpertCProgramming")
