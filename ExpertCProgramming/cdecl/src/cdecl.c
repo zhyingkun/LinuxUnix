@@ -115,6 +115,7 @@ void deal_with_declarator(){
 }
 
 int main(int argc, char* argv[]){
+	(void)argc; (void)argv;
 	read_to_first_identifier();
 	deal_with_declarator();
 	printf("\n");
