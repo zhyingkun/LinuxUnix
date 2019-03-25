@@ -1,0 +1,15 @@
+all: minicrt.lib test.exe
+
+minicrt.lib: entry.obj malloc.obj printf.obj stdio.obj string.obj
+	lib $^ /OUT:$@
+#	rm -rf *.obj
+
+%.obj: %.c
+	cl /c /DWIN32 /GS- $^ /OUT:$@
+
+test.exe: test.obj minicrt.lib
+	link $^ kernel32.lib /NODEFAULTLIB /entry:mini_crt_entry /OUT:$@
+#	rm -rf *.obj
+
+clean:
+	rm -rf *.obj *.lib test.exe test.txt
