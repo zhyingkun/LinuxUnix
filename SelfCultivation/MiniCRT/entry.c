@@ -52,7 +52,9 @@ void mini_crt_entry(){
 	if(!mini_crt_io_init()){
 		crt_fatal_error("IO initialize failed");
 	}
+#ifdef __cplusplus
 	do_global_ctors();
+#endif
 	int ret = main(argc, argv);
 	exit(ret);
 }
