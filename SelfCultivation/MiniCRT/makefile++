@@ -19,17 +19,18 @@ string.o: string.c
 atexit.o: atexit.c
 	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
 
-ctors.o: ctors.c
-	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
-
-crtbegin.o: crtbegin.c
-	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
-
-crtend.o: crtend.c
-	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
-
 entry.o: entry.c
 	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+
+ctors.o: ctors.cpp
+	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
+
+crtbegin.o: crtbegin.cpp
+	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
+
+crtend.o: crtend.cpp
+	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
 
 new_delete.o: new_delete.cpp
 	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@

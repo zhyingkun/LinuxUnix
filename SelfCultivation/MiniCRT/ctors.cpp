@@ -1,4 +1,4 @@
-// ctors.c
+// ctors.cpp
 
 typedef void (*init_func)();
 

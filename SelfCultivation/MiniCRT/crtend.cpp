@@ -1,4 +1,4 @@
-// crtend.c
+// crtend.cpp
 
 #ifdef WIN32
 #else

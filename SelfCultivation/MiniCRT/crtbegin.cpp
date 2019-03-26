@@ -1,4 +1,4 @@
-// crtbegin.c
+// crtbegin.cpp
 #ifdef WIN32
 #else
 typedef void (*ctor_func)();
