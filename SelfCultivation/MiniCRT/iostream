@@ -7,7 +7,7 @@ namespace std {
 		FILE* fp;
 		ofstream(const ofstream&);
 	public:
-		enum openmode(in = 1, out = 2, binary = 4, trunc = 8);
+		enum openmode{in = 1, out = 2, binary = 4, trunc = 8};
 		ofstream();
 		explicit ofstream(const char* filename, ofstream::openmode md = ofstream::out);
 		~ofstream();
