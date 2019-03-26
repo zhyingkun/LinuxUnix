@@ -1,6 +1,6 @@
 all: minicrt.a test
 
-minicrt.a: malloc.o printf.o stdio.o string.o atexit.o ctor.o crtbegin.o crtend.o
+minicrt.a: malloc.o printf.o stdio.o string.o atexit.o ctors.o crtbegin.o crtend.o
 	ar -rs $@ $^
 #	rm -rf *.o
 

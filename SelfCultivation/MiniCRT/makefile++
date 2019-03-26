@@ -1,6 +1,6 @@
 all: minicrt.a test
 
-minicrt.a: malloc.o printf.o stdio.o string.o atexit.o ctor.o crtbegin.o crtend.o iostream.o new_delete.o sysdep.o
+minicrt.a: malloc.o printf.o stdio.o string.o atexit.o ctors.o crtbegin.o crtend.o iostream.o new_delete.o sysdep.o
 	ar -rs $@ $^
 #	rm -rf *.o
 
@@ -19,7 +19,7 @@ string.o: string.c
 atexit.o: atexit.c
 	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
 
-ctor.o: ctor.c
+ctors.o: ctors.c
 	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
 
 crtbegin.o: crtbegin.c
