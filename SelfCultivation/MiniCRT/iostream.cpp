@@ -11,8 +11,8 @@ namespace std {
 		fp = stdout;
 	}
 	stdout_stream cout;
-	ofstream::ofstream():fp(0){}
-	ofstream::ofstream(const char* filename, ofstream::openmode md):fp(0){
+	ofstream::ofstream():fp(NULL){}
+	ofstream::ofstream(const char* filename, ofstream::openmode md){
 		open(filename, md);
 	}
 	ofstream::~ofstream(){
