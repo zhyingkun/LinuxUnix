@@ -27,6 +27,6 @@ namespace std {
 	class stdout_stream : public ofstream {
 	public:
 		stdout_stream();
-	}
+	};
 	extern stdout_stream cout;
 }
