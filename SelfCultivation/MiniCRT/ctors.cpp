@@ -9,7 +9,7 @@ typedef void (*init_func)();
 __declspec(allocate(".CRT$XCA")) init_func ctors_begin[] = {0};
 __declspec(allocate(".CRT$XCZ")) init_func ctors_end[] = {0};
 
-void do_global_ctors(){
+extern "C" void do_global_ctors(){
 	init_func* p = ctors_begin;
 	while(p<ctors_end){
 		if (*p != 0){
@@ -20,7 +20,7 @@ void do_global_ctors(){
 }
 #else
 void run_hooks();
-void do_global_ctors(){
+extern "C" void do_global_ctors(){
 	run_hooks();
 }
 #endif
