@@ -5,20 +5,20 @@ using namespace std;
 class Test {
 private:
 	int age;
-	char* name;
+	const char* name;
 public:
 	Test(int age, char* name);
 	~Test();
 	void printHello(char* hello);
 };
-Test::Test(int age, char* name){
+Test::Test(int age, const char* name){
 	this->age = age;
 	this->name = name;
 }
 Test::~Test(){
 
 }
-void Test::printHello(char* hello){
+void Test::printHello(const char* hello){
 	cout<<hello<<" age:"<<this->age<<" name:"<<this->name<<endl;
 }
 
