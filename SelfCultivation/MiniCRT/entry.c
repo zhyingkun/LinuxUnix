@@ -52,12 +52,13 @@ void mini_crt_entry(){
 	if(!mini_crt_io_init()){
 		crt_fatal_error("IO initialize failed");
 	}
+	do_global_ctors();
 	int ret = main(argc, argv);
 	exit(ret);
 }
 
 void exit(int exitCode){
-	// mini_crt_call_exit_routine();
+	mini_crt_call_exit_routine();
 #ifdef WIN32
 	ExitProcess(exitCode);
 #else

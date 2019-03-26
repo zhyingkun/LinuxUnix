@@ -1,0 +1,51 @@
+all: minicrt.a test
+
+minicrt.a: malloc.o printf.o stdio.o string.o atexit.o ctor.o crtbegin.o crtend.o iostream.o new_delete.o sysdep.o
+	ar -rs $@ $^
+#	rm -rf *.o
+
+malloc.o: malloc.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+printf.o: printf.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+stdio.o: stdio.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+string.o: string.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+atexit.o: atexit.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+ctor.o: ctor.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+crtbegin.o: crtbegin.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+crtend.o: crtend.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+entry.o: entry.c
+	gcc -m32 -ggdb -c -fno-builtin -nostdlib -fno-stack-protector $^ -o $@
+
+new_delete.o: new_delete.cpp
+	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
+
+iostream.o: iostream.cpp
+	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
+
+sysdep.o: sysdep.cpp
+	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
+
+test.o: test.cpp
+	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
+
+test: entry.o test.o minicrt.a
+	ld -m elf_i386 -static -e mini_crt_entry $^ -o $@
+#	rm -rf *.o
+
+clean:
+	rm -rf *.o *.a test test.txt

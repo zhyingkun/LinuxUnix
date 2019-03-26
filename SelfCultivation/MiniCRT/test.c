@@ -1,6 +1,10 @@
 #include "minicrt.h"
 
+void exit_now(){
+	printf("Exit Now!\n");
+}
 int main(int argc, char* argv[]){
+	atexit(exit_now);
 	char** v = malloc(argc*sizeof(char*));
 	int i = 0;
 	for(i=0; i<argc; i++){
