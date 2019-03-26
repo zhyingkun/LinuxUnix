@@ -7,9 +7,9 @@ private:
 	int age;
 	const char* name;
 public:
-	Test(int age, char* name);
+	Test(int age, const char* name);
 	~Test();
-	void printHello(char* hello);
+	void printHello(const char* hello);
 };
 Test::Test(int age, const char* name){
 	this->age = age;
