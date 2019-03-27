@@ -1,6 +1,6 @@
 all: minicrt.a test
 
-minicrt.a: malloc.o printf.o stdio.o string.o atexit.o ctors.o crtbegin.o crtend.o iostream.o new_delete.o sysdep.o
+minicrt.a: malloc.o printf.o stdio.o string.o atexit.o ctors.o iostream.o new_delete.o sysdep.o
 	ar -rs $@ $^
 #	rm -rf *.o
 
@@ -44,7 +44,7 @@ sysdep.o: sysdep.cpp
 test.o: test.cpp
 	g++ -m32 -ggdb -c -fno-builtin -nostdinc++ -fno-rtti -fno-exceptions -nostdlib -fno-stack-protector $^ -o $@
 
-test: entry.o test.o minicrt.a
+test: entry.o crtbegin.o test.o minicrt.a crtend.o
 	ld -m elf_i386 -static -e mini_crt_entry $^ -o $@
 #	rm -rf *.o
 
