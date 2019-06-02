@@ -5,7 +5,7 @@ static jmp_buf gJmpBuffer;
 
 void fireLongJmpOne(){
 	printf("In fireLongJmpOne\n");
-	longjmp(gJmpBuffer, 1);
+	longjmp(gJmpBuffer, 0);
 }
 void fireLongJmpTwo(){
 	printf("In fireLongJmpTwo\n");
