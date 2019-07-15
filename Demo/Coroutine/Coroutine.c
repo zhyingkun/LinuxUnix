@@ -3,7 +3,7 @@
 
 void print1toN(int n) {
   for (int i = 0; i < n; i++) {
-    printf("In Print: %d\n", i);
+    printf("In Print: %d\n", i+1);
   }
 }
 void getPara() {
