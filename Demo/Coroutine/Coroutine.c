@@ -29,19 +29,19 @@ bool doNext() {
   case 0:
     getPara();
     procCnt++;
-    return false;
+    return true;
   case 1:
     doCompile();
     procCnt++;
-    return false;
+    return true;
   case 2:
     uploadResult();
     procCnt++;
-    return true;
+    return false;
   default:
     // error, now the process is finish
     fprintf(stderr, "The process has finished\n");
-    return true;
+    return false;
   }
 }
 
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
   print1toN(3);
   remoteCompile();
   // for user:
-  while (!doNext())
+  while (doNext())
     ;
   return 0;
 }
