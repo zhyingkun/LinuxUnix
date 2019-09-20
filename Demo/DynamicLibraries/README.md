@@ -34,7 +34,7 @@ cmake -G "Visual Studio 15 2017 Win64" ..
 file Debug/hello.dll
 ```
 
-## C# dll 库
+## C# dll 库 1 种
 
 ```bash
 cd DynamicLibraries/CSharp
