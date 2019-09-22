@@ -7,7 +7,7 @@ cd DynamicLibraries
 mkdir buildXcode && cd buildXcode
 cmake -G "Xcode" ..
 open DynamicLibraries.xcodeproj
-# 在Xcode中执行ALL_BUILD目标
+# 在 Xcode 中执行ALL_BUILD目标
 cd Debug
 otool -hv libhello.so
 otool -hv hello.bundle/Contents/MacOS/hello
@@ -31,6 +31,7 @@ file libhello.so.1.0
 cd DynamicLibraries
 mkdir buildVS && cd buildVS
 cmake -G "Visual Studio 15 2017 Win64" ..
+# 在 Visual Studio 中执行ALL_BUILD目标
 file Debug/hello.dll
 ```
 
