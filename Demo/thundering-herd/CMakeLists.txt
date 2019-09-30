@@ -4,7 +4,7 @@ project(thundering-herd
 	VERSION 1.0.0
 	LANGUAGES C)
 
-add_subdirectory(./selectsrv)
+# add_subdirectory(./selectsrv)
 
 # only for macos and linux, Not windows now
 if(APPLE)
@@ -15,4 +15,4 @@ elseif(WIN32)
 endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set_property(TARGET selectsrv PROPERTY FOLDER "Demo/thundering-herd")
+# set_property(TARGET selectsrv PROPERTY FOLDER "Demo/thundering-herd")
