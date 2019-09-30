@@ -1,16 +1,18 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(thundering-herd)
+project(thundering-herd
+	VERSION 1.0.0
+	LANGUAGES C)
 
-add_executable(client client.c)
-
-add_executable(acceptsrv acceptsrv.c)
-add_executable(selectsrv selectsrv.c)
-add_executable(pollsrv pollsrv.c)
+add_subdirectory(./selectsrv)
 
 # only for macos and linux, Not windows now
 if(APPLE)
-    add_executable(kqueuesrv kqueuesrv.c)
-else(APPLE)
-    add_executable(epollsrv epollsrv.c)
-endif(APPLE)
+	# add_subdirectory(./kqueuesrv)
+elseif(CMAKE_SYSTEM_NAME MATCHES "Linux")
+	# add_subdirectory(./epollsrv)
+elseif(WIN32)
+endif()
+
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+set_property(TARGET selectsrv PROPERTY FOLDER "Demo/thundering-herd")
