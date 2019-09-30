@@ -33,7 +33,7 @@ $ kill -l | grep SIGPIPE
 13) SIGPIPE     14) SIGALRM     15) SIGTERM     16) SIGURG
 ```
 
-sleep_cmd.sh 进程启动之后，会等待一秒再向标准输出打印进程信息，这个时候其标准输出通过管道连接到 cmd.sh 的标准输入，但是，cmd.sh 在启动之后打印完信息就立刻退出了，显然 cmd.sh 的标准输入也已经关闭，所以，sleep_cmd.sh 就变成往读端已经关闭的管道写数据，会触发 SIGPIPE 信号，我们通过命令查看 SIGPIPE 信号的值，为 13，128+13=141，这刚好是 sleep_cmd.sh 的退出码，验证了 sleep_cmd.sh 是由于 SIGPIPE 信号退出进程的。（进程由于信号的终止，其退出码为负的信号值，由于进程退出码仅为 8 位，因此-13 也就是无符号的 141）
+sleep_cmd.sh 进程启动之后，会等待一秒再向标准输出打印进程信息，这个时候其标准输出通过管道连接到 cmd.sh 的标准输入，但是，cmd.sh 在启动之后打印完信息就立刻退出了，显然 cmd.sh 的标准输入也已经关闭，所以，sleep_cmd.sh 就变成往读端已经关闭的管道写数据，会触发 SIGPIPE 信号，我们通过命令查看 SIGPIPE 信号的值，为 13，128+13=141，这刚好是 sleep_cmd.sh 的退出码，验证了 sleep_cmd.sh 是由于 SIGPIPE 信号退出进程的。（进程由于信号的终止，其 8 位退出码为 128+信号值，也就是无符号的 141）
 
 3. 命令`./sleep_cmd.sh | ./myecho Test`
 
