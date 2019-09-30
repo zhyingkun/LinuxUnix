@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
 #include <string.h>
 
@@ -10,6 +11,32 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
+#define MAX_LINE 16384
+
+typedef struct fd_state {
+	char buffer[MAX_LINE];
+	size_t buffer_used;
+	
+	int writing;
+	size_t n_written;
+	size_t write_upto;
+} fd_state;
+
+fd_state* alloc_fd_state(void)
+{
+    struct fd_state *state = malloc(sizeof(struct fd_state));
+    if (!state)
+        return NULL;
+    state->buffer_used = state->n_written = state->writing =
+        state->write_upto = 0;
+    return state;
+}
+
+void free_fd_state(fd_state* state)
+{
+    free(state);
+}
+
 void workerProcess(int sockfd)
 {
 	printf("pid:%d ppid:%d\n", getpid(), getppid());
@@ -18,7 +45,7 @@ void workerProcess(int sockfd)
 	// max fd
 	int maxfd = 0;
 	// all fd status
-	struct fd_state *fdstate[FD_SETSIZE];
+	fd_state *fdstate[FD_SETSIZE];
 	for (int i = 0; i < FD_SETSIZE; i++)
 	{
 		fdstate[i] = NULL;
