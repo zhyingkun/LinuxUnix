@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.0)
+
+project(C89)
+
+add_executable(assertTest assert/assertTest.c)
+add_executable(ctypeTest ctype/ctypeTest.c)
+add_executable(errnoTest errno/errnoTest.c)
+add_executable(floatTest float/floatTest.c)
+add_executable(limitsTest limits/limitsTest.c)
+add_executable(localeTest locale/localeTest.c)
+add_executable(mathTest math/mathTest.c)
+add_executable(setjmpTest setjmp/setjmpTest.c)
+add_executable(signalTest signal/signalTest.c)
+add_executable(stdargTest stdarg/stdargTest.c)
+add_executable(stdioTest stdio/stdioTest.c)
