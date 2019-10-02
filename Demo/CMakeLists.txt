@@ -4,3 +4,5 @@ project(Demo
 	LANGUAGES C CXX)
 
 add_subdirectory(./thundering-herd)
+add_subdirectory(./ClangCharacteristic)
+add_subdirectory(./OSCharacteristic)
