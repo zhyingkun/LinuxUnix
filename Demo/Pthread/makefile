@@ -1,6 +1,6 @@
 .PHONY: run clean
 
-all: pthreadTest mainExit
+all: pthreadTest mainExit thread
 
 pthreadTest: pthreadTest.c
 	gcc -std=c99 $^ -o $@ -lpthread
@@ -8,9 +8,12 @@ pthreadTest: pthreadTest.c
 mainExit: mainExit.c
 	gcc $^ -std=c99 -o $@ -lpthread
 
+thread: thread.c
+	gcc $^ -std=c99 -o $@ -lpthread
+
 run: mainExit
 	./mainExit
 
 clean:
-	rm -rf pthreadTest mainExit
+	rm -rf pthreadTest mainExit thread
 
