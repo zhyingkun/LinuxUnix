@@ -1,5 +1,8 @@
 # 主线程先于其他线程退出
 
+1. 测试用例用于说明主线程先于其他线程结束执行状态
+2. 可参考[我的博客](https://www.zhyingkun.com/markdown/linuxnote/)
+
 ## 操作与结果
 
 ```bash

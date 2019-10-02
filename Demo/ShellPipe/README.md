@@ -1,5 +1,8 @@
 # 测试命令行管道
 
+1. 测试用例用于说明命令行管道的相关特性
+2. 可参考[我的博客](https://www.zhyingkun.com/markdown/linuxnote/)
+
 ## 操作与说明
 
 1. 命令`./cmd.sh | ./sleep_cmd.sh`
