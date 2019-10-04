@@ -2,6 +2,25 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+int fd_test_main(int argc, char* argv[]) {
+  printf("Start...\n");
+  int fd = 0;
+  fd = open("123.txt", O_CREAT | O_RDWR, 0644);
+  printf("fd: %d\n", fd);
+  fd = open("456.txt", O_CREAT | O_RDWR, 0644);
+  printf("fd: %d\n", fd);
+  fd = open("789.txt", O_CREAT | O_RDWR, 0644);
+  printf("fd: %d\n", fd);
+  fd = open("abc.txt", O_CREAT | O_RDWR, 0644);
+  printf("fd: %d\n", fd);
+  fd = open("def.txt", O_CREAT | O_RDWR, 0644);
+  printf("fd: %d\n", fd);
+  char buffer[2048];
+  scanf("%s", buffer);
+  printf("%s\nEnd\n", buffer);
+  return 2;
+}
+
 int fd_main(int argc, char* argv[]) {
   printf("__FILE__:%s, __LINE__:%d\n", __FILE__, __LINE__);
   int fd, fd1, fd2, fd3;
@@ -41,5 +60,6 @@ int fd_main(int argc, char* argv[]) {
   write(2, "Write to 2\n", 11);
   // fprintf((FILE *)2, "Error Out Put");
 
+  fd_test_main(argc, argv);
   return 0;
 }
