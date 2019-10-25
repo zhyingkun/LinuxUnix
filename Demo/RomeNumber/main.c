@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-typedef enum Gravity { Nothing = 0, One, Ten, Hundred, Thousand } Gravity;
+typedef enum Gravity {
+  Nothing = 0,
+  One,
+  Ten,
+  Hundred,
+  Thousand,
+} Gravity;
 
 bool is_ordinary_number(char* number) {
   if (number == NULL || number[0] == '\0') {
