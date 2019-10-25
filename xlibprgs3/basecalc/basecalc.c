@@ -34,6 +34,8 @@ main (argc, argv)
 int argc;
 register char *argv[];
 {
+    windata[0].text = malloc(sizeof(char)*48); // fix write permission
+
     /* so we can use the resource manager data merging functions */
     XrmInitialize();
 
@@ -73,7 +75,7 @@ static char *getHomeDir( dest )
 char *dest;
 {
     int uid;
-    extern char *getenv();
+    extern char *getenv(const char *key);
     extern int getuid();
     extern struct passwd *getpwuid();
     struct passwd *pw;
@@ -132,6 +134,8 @@ mergeDatabases()
         serverDB = XrmGetFileDatabase(filename);
     }
     XrmMergeDatabases(serverDB, &rDB);
+
+    extern char *getenv(const char *key);
 
     /* Open XENVIRONMENT file, or if not defined, the ~/.Xdefaults,
          * and merge into existing data base */
@@ -457,45 +461,45 @@ initCalc ()
  */
 initTty ()
 {
-    register struct KeyCode *KeyCodePtr;
-    register int fd;
-#ifdef SysV
-    struct termio term;
-#else
-    struct sgttyb tty;
-    struct tchars tchars;
-    struct ltchars ltchars;
-#endif SysV
+//     register struct KeyCode *KeyCodePtr;
+//     register int fd;
+// #ifdef SysV
+//     struct termio term;
+// #else
+//     struct sgttyb tty;
+//     struct tchars tchars;
+//     struct ltchars ltchars;
+// #endif SysV
 
-    if (!isatty(0)) {
-        if ((fd = open ("/dev/console", 0)) < 0)
-            return;
-    } else
-        fd = 0;
-#ifdef SysV
-    (void) ioctl  (fd, TCGETA,   &term);
-#else
-    (void) ioctl  (fd, TIOCGETP, &tty);
-    (void) ioctl  (fd, TIOCGETC, &tchars);
-    (void) ioctl  (fd, TIOCGLTC, &ltchars);
-#endif SysV
-    if (fd)
-        (void) close (fd);
+//     if (!isatty(0)) {
+//         if ((fd = open ("/dev/console", 0)) < 0)
+//             return;
+//     } else
+//         fd = 0;
+// #ifdef SysV
+//     (void) ioctl  (fd, TCGETA,   &term);
+// #else
+//     (void) ioctl  (fd, TIOCGETP, &tty);
+//     (void) ioctl  (fd, TIOCGETC, &tchars);
+//     (void) ioctl  (fd, TIOCGLTC, &ltchars);
+// #endif SysV
+//     if (fd)
+//         (void) close (fd);
 
-    KeyCodePtr = KeyCodes;
-#ifdef SysV
-    KeyCodePtr++->kc_char = term.c_cc[VERASE];
-    KeyCodePtr++;
-    KeyCodePtr++->kc_char = term.c_cc[VKILL];
-    KeyCodePtr->kc_char = term.c_cc[VINTR];
-    QuitChar = term.c_cc[VQUIT];
-#else
-    KeyCodePtr++->kc_char = tty.sg_erase;
-    KeyCodePtr++->kc_char = ltchars.t_werasc;
-    KeyCodePtr++->kc_char = tty.sg_kill;
-    KeyCodePtr->kc_char = tchars.t_intrc;
-    QuitChar = tchars.t_quitc;
-#endif SysV
+//     KeyCodePtr = KeyCodes;
+// #ifdef SysV
+//     KeyCodePtr++->kc_char = term.c_cc[VERASE];
+//     KeyCodePtr++;
+//     KeyCodePtr++->kc_char = term.c_cc[VKILL];
+//     KeyCodePtr->kc_char = term.c_cc[VINTR];
+//     QuitChar = term.c_cc[VQUIT];
+// #else
+//     KeyCodePtr++->kc_char = tty.sg_erase;
+//     KeyCodePtr++->kc_char = ltchars.t_werasc;
+//     KeyCodePtr++->kc_char = tty.sg_kill;
+//     KeyCodePtr->kc_char = tchars.t_intrc;
+//     QuitChar = tchars.t_quitc;
+// #endif SysV
 }
 
 
@@ -1080,6 +1084,7 @@ register long number;
         Fmt = "%032b";
         break;
     }
+    // windata[0].text = malloc(sizeof(char)*48);
     cp = windata[0].text;
     for (i = 32; --i >= 0; )
         *cp++ = ' ';
